@@ -8,7 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@RequestMapping("/cat")
+@RestController
 public class CategorieProduitController {
     @Autowired
     ICategorieService iCategorieService;
@@ -24,5 +25,12 @@ public class CategorieProduitController {
     public CategorieProduit updateCategorieProduit(@RequestBody CategorieProduit cp ){
         return iCategorieService.updateCategorieProduit(cp);
     }
-
+    @GetMapping("/{idCategorieProduit}")
+    public CategorieProduit retrieveCategorieProduit (@PathVariable Long idCategorieProduit){
+        return iCategorieService.retrieveCategorieProduit(idCategorieProduit);
+    }
+    @DeleteMapping("/delete/{idCategorieProduit}")
+    public void removeCategorieProduit(@PathVariable Long idCategorieProduit){
+        iCategorieService.removeCategorieProduit(idCategorieProduit);
+    }
 }
