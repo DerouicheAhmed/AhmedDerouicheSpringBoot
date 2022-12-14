@@ -25,10 +25,15 @@ public class Facture {
     private Date dateCreactionFacture;
     private Date dateDerniereModification;
     private boolean archive;
-    @OneToMany(mappedBy="facture")
+    @OneToMany(mappedBy="facture",cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("facture")
     private Set<DetailFacture> detailFactures;
     @OneToMany(mappedBy="facture")
+    @JsonIgnoreProperties("facture")
     private Set<Reglement> reglements;
+    @ManyToOne
+    @JsonIgnoreProperties("factures")
+    private Fournisseur fournisseur;
 
 
 

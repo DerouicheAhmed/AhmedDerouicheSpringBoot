@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -26,4 +27,7 @@ public class Fournisseur {
     private Set<SecteurActivite> secteurActivites;
     @OneToOne(mappedBy = "fournisseur")
     private DetailFournisseur detailFournisseur;
+    @OneToMany(mappedBy = "fournisseur",cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("fournisseur")
+    private List<Facture> factures;
 }
